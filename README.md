@@ -9,7 +9,7 @@ The data set is retrieved from the original complete transcripts of *Friends* (A
   
 
 ## **Approach**
-Given dataset Dialogue RE, we will apply several deep learning sequential models such as LSTM， BiLSTM and BERT, to predict relations between pairs of entities in dialogues. Tasks are mainly on preprocessing dialogues, designing and building models, finetuning and comparing with others’ work.
+Given dataset Dialogue RE, we will apply several deep learning sequential models such as LSTM, BiLSTM and BERT, to predict relations between pairs of entities in dialogues. Tasks are mainly on preprocessing dialogues, designing and building models, finetuning and comparing with others’ work.
 
 
 ## **User Guide**  
@@ -22,4 +22,17 @@ To Run prediction on test set, please run the following command:
   python run_classifier.py   --task_name berts  --do_train --do_eval   --data_dir . --vocab_file $BERT_DIR/vocab.txt   --bert_config_file $BERT_DIR/bert_config.json   --init_checkpoint $BERT_DIR/pytorch_model.bin   --max_seq_length 512   --train_batch_size 24   --learning_rate 3e-5   --num_train_epochs 20.0   --output_dir berts_f1  --gradient_accumulation_steps 2
 
   python evaluate.py --f1dev berts_f1/logits_dev.txt --f1test berts_f1/logits_test.txt --f1cdev berts_f1c/logits_dev.txt --f1ctest berts_f1c/logits_test.txt
+  ```
+  
+  ### **LSTM**
+All LSTM trained model as well as related code work are attached in the below experiment files link.
+Experiment files link: https://drive.google.com/drive/folders/1R8ljwaJ7JaH9HnSfBut7adJQDalGQMpl?usp=sharing
+
+To Run prediction on test set, please run the following command:
+  ```
+  python3 run.py --latent_type sols --do_train --do_eval --learning_rate 3e-4   --num_train_epochs 20.0   --output_dir lstm_f1
+
+  python run_cn.py   --task_name lstmf1c --do_eval --data_dir . --learning_rate 3e-4   --num_train_epochs 20.0   --output_dir lstm_f1c
+
+  python evaluate.py --f1dev lstm_f1/logits_dev.txt --f1test lstm_f1/logits_test.txt --f1cdev lstm_f1c/logits_dev.txt --f1ctest lstm_f1c/logits_test.txt
   ```
